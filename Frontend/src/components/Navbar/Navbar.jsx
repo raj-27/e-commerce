@@ -21,7 +21,7 @@ const Navbar = () => {
           </Link>
           <Link className="nav-links" to="/cart">
             <h3>Cart</h3>
-            <Badge color="primary" badgeContent={items.length} overlap="rectangular">
+            <Badge color="primary" badgeContent={items?.length} overlap="rectangular">
               <ShoppingCartIcon className="icon" />
             </Badge>
           </Link>

@@ -12,7 +12,7 @@ const CartPrice = () => {
         <>
           <div className="cart-text cart-price">
             <p>Total Price</p>
-            <h3>{Math.round(cartTotalPrice)}</h3>
+            <h3>{+cartTotalPrice.toFixed(2)}</h3>
           </div>
         </>
       )}

@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Home, Cart } from "./Pages";
+import { Home, Cart, Checkout } from "./Pages";
 import { Navbar } from "./components";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
@@ -15,6 +15,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/cart" element={<Cart />}></Route>
+            <Route path="/checkout" element={<Checkout />}></Route>
           </Routes>
         </Router>
       </Provider>

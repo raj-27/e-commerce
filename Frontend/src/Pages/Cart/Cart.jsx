@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Container } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { remove, increment, decrement, fetchCart } from "../../store/cartSlice";
 import axios from "axios";
 import { CartPrice, CartUniqueItem } from "../../components/Index";
-
+import { FaTrash } from "react-icons/fa";
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import "./cart.scss";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const products = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchCart());
@@ -21,15 +24,13 @@ const Cart = () => {
   };
 
   const handleIncrement = (id, quantity) => {
-    let newQuantity = quantity + 1;
     dispatch(increment(id));
-    axios.post(`http://localhost:5000/${id}`, { quantity: newQuantity });
+    axios.post(`http://localhost:5000/quantity/${Number(id)}`,{text:'increment'});
   };
 
   const handleDecrement = (id, quantity) => {
-    let newQuantity = quantity - 1;
     dispatch(decrement(id));
-    axios.post(`http://localhost:5000/${id}`, { quantity: newQuantity });
+    axios.post(`http://localhost:5000/quantity/${Number(id)}`,{text:'decrement'});
   };
 
   return (
@@ -44,27 +45,36 @@ const Cart = () => {
                 className="btn-minus common"
                 onClick={() => handleDecrement(product.id)}
               >
-                -
+                <AiOutlineMinus/>
               </button>
               <p className="quantity">{product.quantity}</p>
               <button
                 className="btn-plus common"
                 onClick={() => handleIncrement(product.id, product.quantity)}
               >
-                +
+                <AiOutlinePlus/>
               </button>
             </div>
-            <h5>{Math.ceil(product.totalPrice)}</h5>
+            <h5>{+product.totalPrice.toFixed(2)}</h5>
             <button
               className="btn-remove"
-              onClick={() => handleRemove(product.id, product.quantity)}
+              onClick={() => handleRemove(product.id)}
             >
-              Remove
+              <FaTrash/>
             </button>
           </div>
         ))}
         <CartPrice />
         <CartUniqueItem />
+        <div className="cart-button">
+          <div className="home-redirect">
+            <button className="btn common" onClick={() => navigate('/')}>Home</button>
+          </div>
+          <div className="cart-action-btn">
+            <button className="btn common">Empty Cart</button>
+            <button className="btn common" onClick={() => navigate('/checkout')}>Checkout</button>
+          </div>
+        </div>
       </Container>
     </>
   );

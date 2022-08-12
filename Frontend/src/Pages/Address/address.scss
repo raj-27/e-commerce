@@ -1,0 +1,25 @@
+.address-heading {
+    padding: 0 0 1rem 0;
+}
+
+.form {
+    width: 450px;
+    max-width: 90%;
+    .form-btn {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin: 1.3rem 0;
+        .btn {
+            background-color: grey;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 400;
+            font-family: cursive;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}

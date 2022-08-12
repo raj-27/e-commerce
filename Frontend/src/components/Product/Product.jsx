@@ -2,21 +2,22 @@ import React, { useState, useEffect } from "react";
 import { Grid, Paper, Container } from "@material-ui/core";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { add } from "../../store/cartSlice";
+import { add, fetchCart } from "../../store/cartSlice";
 import { fetchProducts, STATUSES } from "../../store/productSlice";
 import "./product.scss";
 const Product = () => {
   const dispatch = useDispatch();
   const { data, status } = useSelector((state) => state.product);
   useEffect(() => {
-    console.log('Product Loaded');
-      dispatch(fetchProducts());
-      return () => console.log("Cleanup..");
-  }, []);
+    console.log("Product Loaded");
+    dispatch(fetchProducts());
+    dispatch(fetchCart());
+    return () => console.log("Cleanup..");
+  }, [dispatch]);
 
   const handleAdd = (product) => {
     dispatch(add(product));
-    axios.post(`http://localhost:5000/`,product);
+    axios.post(`http://localhost:5000/`, product);
   };
 
   if (status === STATUSES.LOADING) {
@@ -49,7 +50,13 @@ const Product = () => {
                 <div className="card-action">
                   <button
                     className="add-to-cart"
-                    onClick={() => handleAdd({...product,quantity:1,totalPrice:product.price})}
+                    onClick={() =>
+                      handleAdd({
+                        ...product,
+                        quantity: 1,
+                        totalPrice: product.price,
+                      })
+                    }
                   >
                     Add to cart
                   </button>

@@ -27,7 +27,7 @@
             padding: .5rem .78rem;
             background-color: #e9edc9;
             font-weight: 500;
-            font-size: 1rem;
+            font-size: .91rem;
             &:hover {
                 cursor: pointer;
                 background-color: #ccd5ae;
@@ -46,10 +46,7 @@
     }
     .btn-remove {
         font-weight: 600;
-        color: #fff;
-        background-color: #e74c3c;
-        opacity: .9;
-        padding: .25rem 1rem;
+        font-size: 1.4rem;
         &:hover {
             cursor: pointer;
             opacity: 1;
@@ -67,5 +64,43 @@
     h3 {
         font-family: cursive;
         font-weight: 600;
+    }
+}
+
+.cart-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+    box-shadow: 0 0 10px #ADD9E7;
+    .home-redirect {
+        .btn {
+            background-color: #9FA8DA;
+            color: #212121;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+    .cart-action-btn {
+        .btn {
+            background-color: #F87171;
+            color: #212121;
+            &:nth-child(2) {
+                background-color: #FDE047;
+                color: #212121;
+            }
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+    .common {
+        padding: .5rem 1rem;
+        border-radius: 10px;
+        margin: auto .21rem;
+        font-weight: 400;
+        font-family: cursive;
+        font-size: .95rem;
     }
 }
