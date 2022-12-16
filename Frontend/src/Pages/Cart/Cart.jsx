@@ -6,8 +6,8 @@ import axios from "axios";
 import { CartPrice, CartUniqueItem } from "../../components/Index";
 import { FaTrash } from "react-icons/fa";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import "./cart.scss";
 import { useNavigate } from "react-router-dom";
+import "./cart.scss";
 
 const Cart = () => {
   const products = useSelector((state) => state.cart.cartItems);
